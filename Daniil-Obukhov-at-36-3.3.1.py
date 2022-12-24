@@ -281,6 +281,6 @@ if __name__ == '__main__':
         valutes = ProcessData(valutes).process_valutes()
         valutes = [i for i in valutes if valutes[i] > 5000 and i != 'RUR']
         valutes_values = GetValutesValues(valutes)
-        dates = valutes_values.get_date("2003-01", "2020-01")
+        dates = valutes_values.get_date("2003-01", "2022-07")
         valutes_values = pd.DataFrame(list(executor.map(valutes_values.get_valutes, valutes_values.get_date("2003-01", "2020-01"))), columns=["date"] + valutes)
     valutes_values.to_csv('valutes.csv', index=False)
