@@ -309,10 +309,10 @@ class GetValutesValues:
 
 if __name__ == '__main__':
     inp = InputConnect()
-    #spl = SplitCsvFileByYear(inp.csv_file, inp.directory)
+    spl = SplitCsvFileByYear(inp.csv_file, inp.directory)
     files = [str(file) for file in pathlib.Path(f"./vacancies_by_year").iterdir()]
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        # files = [str(file) for file in pathlib.Path(f"./{inp.directory}").iterdir()]
+        files = [str(file) for file in pathlib.Path(f"./{inp.directory}").iterdir()]
         r = list(executor.map(DataSet, files))
     res = pd.concat([pd.DataFrame(el.vacancies_objects, columns=["name", "salary", "area_name", "published_at"]) for el in r])
     print(res)
